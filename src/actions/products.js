@@ -1,14 +1,11 @@
+import moment from 'moment';
 import { productApi } from '../gateways/ProductApi';
+import {generateId} from '../utils';
 
-export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS';
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
-
-const requestProducts = () => ({
-  type: REQUEST_PRODUCTS,
-});
 
 export const deleteProduct = (id) => ({
   type: DELETE_PRODUCT,
@@ -32,7 +29,6 @@ const receiveProducts = (json) => ({
 });
 
 export const fetchProducts = () => dispatch => {
-  dispatch(requestProducts());
   const json = productApi.getProducts();
   dispatch(receiveProducts(json));
 };
@@ -43,6 +39,6 @@ export const updateProductForm = (id, data) => (dispatch, getState, {history}) =
 }
 
 export const createProductForm = (data) => (dispatch, getState, {history}) => {
-  dispatch(createProduct(data));
+  dispatch(createProduct({...data, id: generateId(), createdAt: moment().format()}));
   history.push('/');
 }

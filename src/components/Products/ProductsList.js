@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'reactstrap'
 import { chunk } from 'lodash'
 
 const ProductList = ({ products, onDelete }) => {
-  const productsGroups = chunk(products, 3)
+  const productsGroups = chunk(products, 3);
 
   return (
     <Container>

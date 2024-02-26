@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const repeat = (n) => Array.from(Array(n).keys());
 
 export function getMultiSelected(target) {
@@ -9,15 +11,10 @@ export function getMultiSelected(target) {
     }, [])
 }
 
-const SEC = 1000;
-const MIN = 60 * SEC;
-const HOUR = 60 * MIN;
-const DAY = 24 * HOUR;
-
-export function timestampToDays(ms) {
-    return ms / DAY;
+export function getDaysDiff(timeA = moment().startOf('day'), timeB = moment().startOf('day')) {
+    return moment(timeA).diff(timeB, "days");
 }
 
 export function generateId() {
-    return Date.now().toString(10);
+    return parseInt(Date.now().toString(10));
 }

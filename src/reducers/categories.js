@@ -17,5 +17,5 @@ export function getCategoriesById(state) {
       ...acc,
       [category.id]: category
     }
-  }, {})
+  }, {});
 }

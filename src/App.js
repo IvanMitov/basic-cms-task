@@ -11,13 +11,13 @@ class App extends Component {
 		return (
 			<Main>
 				<Switch>
-					<Route exact path="/" component={ProductsContainer}/>,
+					<Route exact path="/" component={ProductsContainer}/>
 					<Route
 						path="/edit/:productId"
 						render={({match}) => (<UpdateFormContainer productId={parseInt(match.params.productId)}/>)}
-					/>,
-					<Route path="/add" component={AddFormContainer}/>,
-					<Route path="*" component={NotFound}/>,
+					/>
+					<Route path="/add" component={AddFormContainer}/>
+					<Route path="*" component={NotFound}/>
 				</Switch>
 			</Main>
 		)

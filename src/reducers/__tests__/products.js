@@ -1,10 +1,10 @@
-import {isFeatured, products} from '../products';
+import {products} from '../products';
 import {createProduct, deleteProduct, updateProduct} from '../../actions/products';
+import { isFeatured } from '../../components/Products/Update/ProductForm';
 
 describe('products', () => {
 	it('delete product', () => {
 		const removed = {id: '1'};
-
 		const result = products([removed, {id: '2'}], deleteProduct(removed.id));
 
 		expect(result).not.toContain(removed);

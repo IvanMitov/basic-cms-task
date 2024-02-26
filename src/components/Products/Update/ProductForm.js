@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form, FormFeedback, FormGroup, Input, Label} from 'reactstrap';
 import {getMultiSelected, repeat} from '../../../utils';
-import {isCategoriesValid, isNameValid} from './validators';
+import {isCategoriesValid, isNameValid, isExpirationDateValid} from './validators';
+
+export const isFeatured = ({rating, featured}) => rating > 8 || featured;
 
 const ProductForm = (props) => {
     const {product = {}} = props;
@@ -13,10 +15,18 @@ const ProductForm = (props) => {
     const [itemsInStock, setItemsInStock] = useState(product.itemsInStock || 0);
     const [receiptDate, setReceiptDate] = useState(product.receiptDate || '');
     const [expirationDate, setExpirationDate] = useState(product.expirationDate || '');
-    const [featured, setFeatured] = useState(product.featured);
+    const [featured, setFeatured] = useState(product.featured || false);
 
+    const isFormValid = isNameValid(name) && isCategoriesValid(categories) && isExpirationDateValid(expirationDate);
+
+    useEffect(() => {
+        setFeatured(isFeatured({rating, featured}));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [rating]);
+    
     const onSubmit = (e) => {
         e.preventDefault();
+        if (!isFormValid) return;
         props.onSave({
             name,
             brand,
@@ -95,6 +105,7 @@ const ProductForm = (props) => {
             <FormGroup>
                 <Label for="expirationDate">Expiration date</Label>
                 <Input
+                    invalid={!isExpirationDateValid(expirationDate)}
                     type="date"
                     name="expirationDate"
                     id="expirationDate"
@@ -118,7 +129,7 @@ const ProductForm = (props) => {
                     Featured
                 </Label>
             </FormGroup>
-            <Button>Submit</Button>
+            <Button disabled={!isFormValid}>Submit</Button>
         </Form>
     );
 }

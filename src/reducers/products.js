@@ -1,8 +1,4 @@
 import * as productsActions from '../actions/products';
-import {generateId} from '../utils';
-import moment from 'moment';
-
-export const isFeatured = ({rating, featured}) => rating > 8 || featured;
 
 export function products(state = [], action) {
   switch (action.type) {
@@ -18,18 +14,12 @@ export function products(state = [], action) {
           return {
             ...item,
             ...action.data,
-            featured: isFeatured(action.data)
           }
         }
         return item;
       });
     case productsActions.CREATE_PRODUCT:
-      return state.concat([{
-        ...action.data,
-        id: generateId(),
-        featured: isFeatured(action.data),
-        createdAt: moment().format(),
-      }]);
+      return state.concat([action.data]);
     default:
       return state;
   }
