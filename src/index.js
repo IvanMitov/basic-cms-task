@@ -10,11 +10,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import {fetchCategories} from './actions/categories';
 import {fetchProducts} from './actions/products';
-import {createHashHistory} from 'history';
+import {createBrowserHistory} from 'history';
 import {Router} from 'react-router-dom';
 import {categoryApi} from './gateways/CategoryApi';
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 const deps = {history, categoryApi};
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(deps))));
