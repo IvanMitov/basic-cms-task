@@ -41,8 +41,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 1. Removed commas in App.js after declaring every Route component
 2. Added missed semicolons in a few places
-3. Removed side effects from the products reducer ( reducers shouldn`t containt any side effects )
-   and placed them into action creators ( could also be done in the component, but it's more scalable that way )
+3. Removed side effects from the products reducer ( reducers shouldn`t contains any side effects )
+   and placed them into action creators ( could also be done in the component when dispatching )
 4. Changed default state value for "featured" checkbox ( it was causing controlled/uncontrolled form error )
 5. Parse the return value of generateId() from string to number
 6. Made submit button disable and prevent clicking when the form is invalid
@@ -61,5 +61,5 @@ when reselect "Rating" under 8 )
 4. Use Redux hooks - useSelector, useDispatch instead of mapStateToProps
 5. Create reusable components for the form ( e.g <InputGroup /> by combining FormGroup, Label and Input)
 6. Use library for the forms like "Formik"
-7. Helper methods like "validators.js" is better to be in separate folder and not in components
-7. Add some stylings :)
+7. Helper methods like "validators.js" is better to be in separate folder not in components
+7. Use some stylings :)
