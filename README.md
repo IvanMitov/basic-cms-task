@@ -54,11 +54,13 @@ when reselect "Rating" under 8 )
 
 ## Refactoring suggestions
 
-1. Create "pages" folder and place there components which will be rendered from Router ( e.g "ProductsContainer", "UpdateFormContainer", "AddFormContainer" )
-2. Use TypeScript instead of PropTypes or in the extreme case write shapes for objects and arrays
-3. Refactor Class Components to Functional Components ( those which use Redux currently are class components )
-4. Use Redux hooks - useSelector, useDispatch instead of mapStateToProps
-5. Could Use Redux Toolkit to reduce boilerplate and easily and safely mutate state in reducers
-6. Create reusable components for the form ( e.g <InputGroup /> by combining FormGroup, Label and Input)
-7. Use library for the forms like "Formik"
-8. Helper methods like "validators.js" is better to be in separate folder ( e.g "helpers" ), not in components
+1. Currently Products and Categories are "fetched" only once ( right after store initialisation ) which will be a problem with real data cause state won`t be synced with the database. 
+I suggest dispatching the thunks in those components that use the data each time they mount ( in useEffect with empty dependency ) - in this way, we will be sure that the state is always synchronized with the database
+2. Create "pages" folder and place there components which will be rendered from Router ( e.g "ProductsContainer", "UpdateFormContainer", "AddFormContainer" )
+3. Use TypeScript instead of PropTypes or in the extreme case write shapes for objects and arrays
+4. Refactor Class Components to Functional Components ( those which use Redux currently are class components )
+5. Use Redux hooks - useSelector, useDispatch instead of mapStateToProps
+6. Could Use Redux Toolkit to reduce boilerplate and easily and safely mutate state in reducers
+7. Create reusable components for the form ( e.g <InputGroup /> by combining FormGroup, Label and Input)
+8. Use library for the forms like "Formik"
+9. Helper methods like "validators.js" is better to be in separate folder ( e.g "helpers" ), not in components
