@@ -1,4 +1,5 @@
 import * as productsActions from '../actions/products';
+import {generateId} from '../utils';
 
 export function products(state = [], action) {
   switch (action.type) {
@@ -19,7 +20,11 @@ export function products(state = [], action) {
         return item;
       });
     case productsActions.CREATE_PRODUCT:
-      return state.concat([action.data]);
+      return state.concat([{
+        ...action.data,
+        id: generateId(), 
+        createdAt: new Date(),
+      }]);
     default:
       return state;
   }

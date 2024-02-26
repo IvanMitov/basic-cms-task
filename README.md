@@ -41,8 +41,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 1. Removed commas in App.js after declaring every Route component
 2. Added missed semicolons in a few places
-3. Removed side effects from the products reducer ( reducers shouldn`t contains any side effects )
-   and placed them into action creators ( could also be done in the component when dispatching )
+3. Removed "featured" side effect from reducers->products.js, it`s handled in ProductForm.js
 4. Changed default state value for "featured" checkbox ( it was causing controlled/uncontrolled form error )
 5. Parse the return value of generateId() from string to number
 6. Made submit button disable and prevent clicking when the form is invalid
@@ -55,11 +54,11 @@ when reselect "Rating" under 8 )
 
 ## Refactoring suggestions
 
-1. Create "pages" folder and place there components which will be rendered by Router ( e.g "ProductsContainer", "UpdateFormContainer", "AddFormContainer" )
+1. Create "pages" folder and place there components which will be rendered from Router ( e.g "ProductsContainer", "UpdateFormContainer", "AddFormContainer" )
 2. Use TypeScript instead of PropTypes or in the extreme case write shapes for objects and arrays
-3. Refactor Class Components to Functional Components ( those which use Redux are class components )
+3. Refactor Class Components to Functional Components ( those which use Redux currently are class components )
 4. Use Redux hooks - useSelector, useDispatch instead of mapStateToProps
-5. Create reusable components for the form ( e.g <InputGroup /> by combining FormGroup, Label and Input)
-6. Use library for the forms like "Formik"
-7. Helper methods like "validators.js" is better to be in separate folder not in components
-7. Use some stylings :)
+5. Could Use Redux Toolkit to reduce boilerplate and easily and safely mutate state in reducers
+6. Create reusable components for the form ( e.g <InputGroup /> by combining FormGroup, Label and Input)
+7. Use library for the forms like "Formik"
+8. Helper methods like "validators.js" is better to be in separate folder ( e.g "helpers" ), not in components

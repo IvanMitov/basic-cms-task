@@ -13,9 +13,10 @@ import {fetchProducts} from './actions/products';
 import {createBrowserHistory} from 'history';
 import {Router} from 'react-router-dom';
 import {categoryApi} from './gateways/CategoryApi';
+import {productApi} from './gateways/ProductApi';
 
 const history = createBrowserHistory();
-const deps = {history, categoryApi};
+const deps = {history, categoryApi, productApi};
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(deps))));
 store.dispatch(fetchCategories());
